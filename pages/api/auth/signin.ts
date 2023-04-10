@@ -12,41 +12,18 @@ export default async function handler(
   res: NextApiResponse
 ) {
   if (req.method === "POST") {
+    const errors: string[] = [];
+    const { email, password } = req.body;
+
     try {
-      const { firstName, lastName, email, phone, city, password } = req.body;
-
-      const errors: string[] = [];
-
       const validationSchema = [
-        {
-          valid: validator.isLength(firstName, {
-            min: 1,
-            max: 20,
-          }),
-          errorMessage: "First name is invalid",
-        },
-        {
-          valid: validator.isLength(lastName, {
-            min: 1,
-            max: 20,
-          }),
-          errorMessage: "Last name is invalid",
-        },
         {
           valid: validator.isEmail(email),
           errorMessage: "Email is invalid",
         },
         {
-          valid: validator.isMobilePhone(phone),
-          errorMessage: "Phone number is invalid",
-        },
-        {
-          valid: validator.isLength(city, { min: 1 }),
-          errorMessage: "City is invalid",
-        },
-        {
-          valid: validator.isStrongPassword(password),
-          errorMessage: "Password is not strong enough",
+          valid: validator.isLength(password, { min: 1 }),
+          errorMessage: "Password is invalid",
         },
       ];
 
@@ -59,30 +36,25 @@ export default async function handler(
       if (errors.length) {
         return res.status(400).json({ errors: errors });
       }
-
-      const userWithEmail = await prisma.user.findUnique({
+      const user = await prisma.user.findUnique({
         where: {
           email,
         },
       });
 
-      if (userWithEmail)
+      if (!user) {
         return res
-          .status(409)
-          .json({ errors: ["Email is associated with another account"] });
+          .status(401)
+          .json({ errors: ["Email or password is invalid"] });
+      }
 
-      const hashedPassword = await bcrypt.hash(password, 10);
+      const isMatch = await bcrypt.compare(password, user.password);
 
-      const user = await prisma.user.create({
-        data: {
-          first_name: firstName,
-          last_name: lastName,
-          password: hashedPassword,
-          city,
-          phone,
-          email,
-        },
-      });
+      if (!isMatch) {
+        return res
+          .status(401)
+          .json({ errors: ["Email or password is invalid"] });
+      }
 
       const alg = "HS256";
       const secret = new TextEncoder().encode(process.env.JWT_SECRET);
@@ -110,5 +82,6 @@ export default async function handler(
       return res.status(400).send({ erros: [error.message ?? error] });
     }
   }
+
   return res.status(404).json("Unknown endpoint");
 }
