@@ -5,6 +5,10 @@ export const axiosAuth = axios.create({
   baseURL: `api/auth`,
 });
 
+export const axiosRestaurant = axios.create({
+  baseURL: `http://localhost:3000/api/restaurant/`,
+});
+
 axiosAuth.interceptors.request.use(
   (config) => {
     const jwt = getCookie("jwt");
