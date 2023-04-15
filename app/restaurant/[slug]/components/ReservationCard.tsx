@@ -71,7 +71,7 @@ const ReservationCard = ({
   };
 
   return (
-    <div className="fixed w-full bottom-0 md:bottom-auto md:w-[35%] bg-white rounded p-3 shadow">
+    <div className="fixed w-full bottom-0 md:bottom-auto md:w-[35%] md:max-w-sm bg-white rounded p-3 shadow">
       <div className="text-center border-b pb-2 font-bold">
         <h4 className="mr-7 text-lg">Make a Reservation</h4>
       </div>
