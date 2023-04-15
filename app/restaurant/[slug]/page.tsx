@@ -1,7 +1,4 @@
-import Link from "next/link";
 import React from "react";
-import Navbar from "../../components/Navbar";
-import Header from "./components/Header";
 import RestaurantNavbar from "./components/RestaurantNavbar";
 import Title from "./components/Title";
 import Rating from "./components/Rating";
