@@ -21,16 +21,16 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="text-left text-lg py-3 m-auto flex justify-center">
+    <div className="text-left text-lg py-3 m-auto flex flex-wrap gap-2 justify-center">
       <input
-        className="rounded  mr-3 p-2 w-[450px]"
+        className="rounded p-2 w-full sm:w-[450px]"
         type="text"
         placeholder="State, city or town"
         value={location}
         onChange={handleLocation}
       />
       <button
-        className="rounded bg-red-600 px-9 py-2 text-white"
+        className="rounded bg-red-600 px-9 py-2 text-white w-full sm:w-auto"
         onClick={handleSearch}
       >
         Let's go

@@ -30,8 +30,8 @@ const Reserve = async ({
   const restaurant = await fetchRestaurantBySlug(params.slug);
   return (
     <>
-      <div className="border-t h-screen">
-        <div className="py-9 w-3/5 m-auto">
+      <div className="border-t h-screen flex justify-center">
+        <div className="py-9 w-full max-w-2xl">
           <Header
             image={restaurant.main_image}
             name={restaurant.name}

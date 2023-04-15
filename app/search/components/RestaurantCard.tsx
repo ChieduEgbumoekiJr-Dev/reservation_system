@@ -28,18 +28,22 @@ const RestaurantCard = ({ restaurant }: { restaurant: Restaurant }) => {
 
   return (
     <div className="border-b flex pb-5">
-      <img src={restaurant.main_image} alt="" className="w-44 h-36 rounded" />
+      <img
+        src={restaurant.main_image}
+        alt=""
+        className="min-w-[11rem] min-h-[9rem] max-w-[11rem] max-h-[9rem] rounded object-cover"
+      />
       <div className="pl-5">
-        <h2 className="text-3xl">{restaurant.name}</h2>
-        <div className="flex items-start">
+        <h2 className="text-3xl w-32 sm:w-56">{restaurant.name}</h2>
+        <div className="flex flex-col	 items-start sm:flex-row">
           <Stars reviews={restaurant.reviews} />
-          <p className="ml-2 text-sm">{renderRatingText()}</p>
+          <p className="sm:ml-2 text-sm">{renderRatingText()}</p>
         </div>
         <div className="mb-9">
-          <div className="font-light flex text-reg">
+          <div className="font-light flex flex-col text-reg sm:flex-row">
             <Price price={restaurant.price} />
-            <p className="mr-4 capitalize ">{restaurant.cuisine.name}</p>
-            <p className="mr-4 capitalize">{restaurant.location.name}</p>
+            <p className="sm:mr-4 capitalize ">{restaurant.cuisine.name}</p>
+            <p className="sm:mr-4 capitalize">{restaurant.location.name}</p>
           </div>
         </div>
         <div className="text-red-600">

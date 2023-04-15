@@ -71,7 +71,7 @@ const ReservationCard = ({
   };
 
   return (
-    <div className="fixed w-[15%] bg-white rounded p-3 shadow">
+    <div className="fixed w-full bottom-0 md:bottom-auto md:w-[35%] bg-white rounded p-3 shadow">
       <div className="text-center border-b pb-2 font-bold">
         <h4 className="mr-7 text-lg">Make a Reservation</h4>
       </div>
@@ -107,7 +107,7 @@ const ReservationCard = ({
           <select
             name=""
             id=""
-            className="py-3 border-b font-light"
+            className="py-3 border-b font-light h-[52px]"
             value={time}
             onChange={handleChangeTime}
           >

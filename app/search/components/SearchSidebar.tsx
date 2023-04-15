@@ -35,7 +35,7 @@ const SearchSidebar = ({
   ];
 
   return (
-    <div className="w-1/5">
+    <div className="w-full sm:w-1/5 pl-4 pr-2 sm:pr-0">
       <div className="border-b pb-4 flex flex-col ">
         <h1 className="mb-2">Region</h1>
         {cities.map((c) => (

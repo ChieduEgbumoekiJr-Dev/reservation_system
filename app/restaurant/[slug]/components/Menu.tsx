@@ -16,7 +16,7 @@ const Menu = ({ menu }: { menu: Item[] }) => {
             ))}
           </div>
         ) : (
-          <div className="flex flex-wrap justify-between">
+          <div className="flex justify-center">
             <p>This Restuarant doesn't have a menu</p>
           </div>
         )}

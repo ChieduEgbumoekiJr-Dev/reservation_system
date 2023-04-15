@@ -70,10 +70,10 @@ const Form = ({
   }
 
   return (
-    <div className="mt-10 flex flex-wrap justify-between w-[660px]">
+    <div className="mt-10 flex flex-wrap justify-between gap-y-2 px-1">
       <input
         type="text"
-        className="border rounded p-3 w-80 mb-4"
+        className="border rounded p-3 w-full"
         placeholder="First name"
         name="bookerFirstName"
         value={inputs.bookerFirstName}
@@ -81,7 +81,7 @@ const Form = ({
       />
       <input
         type="text"
-        className="border rounded p-3 w-80 mb-4"
+        className="border rounded p-3 w-full"
         placeholder="Last name"
         name="bookerLastName"
         value={inputs.bookerLastName}
@@ -89,7 +89,7 @@ const Form = ({
       />
       <input
         type="text"
-        className="border rounded p-3 w-80 mb-4"
+        className="border rounded p-3 w-full"
         placeholder="Phone number"
         name="bookerPhone"
         value={inputs.bookerPhone}
@@ -97,7 +97,7 @@ const Form = ({
       />
       <input
         type="text"
-        className="border rounded p-3 w-80 mb-4"
+        className="border rounded p-3 w-full"
         placeholder="Email"
         name="bookerEmail"
         value={inputs.bookerEmail}
@@ -105,7 +105,7 @@ const Form = ({
       />
       <input
         type="text"
-        className="border rounded p-3 w-80 mb-4"
+        className="border rounded p-3 w-full "
         placeholder="Occasion (optional)"
         name="bookerOccasion"
         value={inputs.bookerOccasion}
@@ -113,7 +113,7 @@ const Form = ({
       />
       <input
         type="text"
-        className="border rounded p-3 w-80 mb-4"
+        className="border rounded p-3 w-full"
         placeholder="Requests (optional)"
         name="bookerRequest"
         value={inputs.bookerRequest}
@@ -130,7 +130,7 @@ const Form = ({
           "Complete reservation"
         )}
       </button>
-      <p className="mt-4 text-sm">
+      <p className="mt-4 text-sm ">
         By clicking “Complete reservation” you agree to the OpenTable Terms of
         Use and Privacy Policy. Standard text message rates may apply. You may
         opt out of receiving text messages at any time.

@@ -88,13 +88,13 @@ const Search = async ({
   return (
     <>
       <Header />
-      <div className="flex py-4 m-auto w-2/3 justify-between items-start">
+      <div className="flex flex-wrap sm:flex-nowrap py-4 m-auto w-full justify-between items-start gap-2">
         <SearchSidebar
           cities={cities}
           cuisines={cuisines}
           searchParams={searchParams}
         />
-        <div className="w-5/6">
+        <div className="w-full sm:w-5/6">
           {restaurants.length ? (
             <>
               {restaurants.map((restaurant) => (
@@ -102,7 +102,9 @@ const Search = async ({
               ))}
             </>
           ) : (
-            <p>Sorry, we found no restaurants in this area</p>
+            <p className="text-center">
+              Sorry, we found no restaurants in this area
+            </p>
           )}
         </div>
       </div>
