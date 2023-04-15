@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import useReservation from "../../../../hooks/useReservation";
 import { Alert, CircularProgress } from "@mui/material";
+import Link from "next/link";
 
 const Form = ({
   slug,
@@ -62,9 +63,29 @@ const Form = ({
 
   if (didBook) {
     return (
-      <div>
-        <h1>You are all booked up</h1>
+      <div className="pt-24 flex w-full flex-col justify-center items-center">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="w-36 h-36 text-green-600"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+        <h1 className="text-4xl font-bold">You are all booked up</h1>
         <p>Enjoy your reservation</p>
+        <Link
+          href="/"
+          className="bg-green-600 text-white border p-1 px-4 rounded mt-8 cursor-pointer"
+        >
+          Back to Home
+        </Link>
       </div>
     );
   }
