@@ -17,7 +17,8 @@ const useAuth = () => {
   ) => {
     setAuthState({
       data: null,
-      loading: true,
+      loading: false,
+      formLoading: true,
       error: null,
     });
     try {
@@ -29,6 +30,7 @@ const useAuth = () => {
       setAuthState({
         data: response.data,
         loading: false,
+        formLoading: false,
         error: null,
       });
       handleClose();
@@ -36,7 +38,8 @@ const useAuth = () => {
       setAuthState({
         data: null,
         loading: false,
-        error: e.response.data.errors.join(","),
+        formLoading: false,
+        error: e.response.data.errors.join(", "),
       });
     }
   };
@@ -61,7 +64,8 @@ const useAuth = () => {
   ) => {
     setAuthState({
       data: null,
-      loading: true,
+      loading: false,
+      formLoading: true,
       error: null,
     });
     try {
@@ -77,6 +81,7 @@ const useAuth = () => {
       setAuthState({
         data: response.data,
         loading: false,
+        formLoading: false,
         error: null,
       });
       handleClose();
@@ -84,7 +89,8 @@ const useAuth = () => {
       setAuthState({
         data: null,
         loading: false,
-        error: e.response.data.errors.join(","),
+        formLoading: false,
+        error: e.response.data.errors.join(", "),
       });
     }
   };
@@ -95,6 +101,7 @@ const useAuth = () => {
     setAuthState({
       data: null,
       loading: false,
+      formLoading: false,
       error: null,
     });
   };

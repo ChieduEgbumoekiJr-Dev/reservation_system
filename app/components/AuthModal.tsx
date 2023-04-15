@@ -31,7 +31,9 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
   });
   const [disabled, setDisabled] = useState(true);
   const { signin, signup } = useAuth();
-  const { loading, data, error } = useContext(AuthenticationContext);
+  const { formLoading, data, error, setAuthState } = useContext(
+    AuthenticationContext
+  );
 
   useEffect(() => {
     if (isSignIn) {
@@ -54,7 +56,14 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
   }, [inputs]);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setAuthState((prevState) => ({
+      ...prevState,
+      error: null,
+      formLoading: false,
+    }));
+    setOpen(false);
+  };
 
   const handleClick = () => {
     let payload;
@@ -105,7 +114,7 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          {loading ? (
+          {formLoading ? (
             <div className="px-2 py-24 h-[600px] flex justify-center ">
               <CircularProgress />
             </div>
@@ -134,7 +143,7 @@ export default function AuthModal({ isSignIn }: { isSignIn: boolean }) {
                   isSignIn={isSignIn}
                 />
                 <button
-                  disabled={disabled}
+                  disabled={disabled || formLoading}
                   onClick={handleClick}
                   className="uppercase bg-red-600 w-full text-white rounded p-3 text-sm mb-5 disabled:bg-gray-300"
                 >
