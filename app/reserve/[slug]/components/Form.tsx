@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import useReservation from "../../../../hooks/useReservation";
-import { CircularProgress } from "@mui/material";
+import { Alert, CircularProgress } from "@mui/material";
 
 const Form = ({
   slug,
@@ -71,6 +71,11 @@ const Form = ({
 
   return (
     <div className="mt-10 flex flex-wrap justify-between gap-y-2 px-1">
+      {error && (
+        <Alert severity="error" className="mb-4">
+          {error}
+        </Alert>
+      )}
       <input
         type="text"
         className="border rounded p-3 w-full"

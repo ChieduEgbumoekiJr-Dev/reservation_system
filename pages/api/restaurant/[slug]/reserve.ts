@@ -1,7 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import { findavailableables } from "../../../../services/restaurant/findAvailableTables";
-import { table } from "console";
+import validator from "validator";
 
 const prisma = new PrismaClient();
 
@@ -27,6 +27,43 @@ export default async function handler(
     bookerRequest,
     bookerOccasion,
   } = req.body;
+
+  const errors: string[] = [];
+
+  const validationSchema = [
+    {
+      valid: validator.isLength(bookerFirstName, {
+        min: 1,
+        max: 20,
+      }),
+      errorMessage: "First name is invalid",
+    },
+    {
+      valid: validator.isLength(bookerLastName, {
+        min: 1,
+        max: 20,
+      }),
+      errorMessage: "Last name is invalid",
+    },
+    {
+      valid: validator.isEmail(bookerEmail),
+      errorMessage: "Email is invalid",
+    },
+    {
+      valid: validator.isMobilePhone(bookerPhone),
+      errorMessage: "Phone number is invalid",
+    },
+  ];
+
+  validationSchema.forEach((check) => {
+    if (!check.valid) {
+      errors.push(check.errorMessage);
+    }
+  });
+
+  if (errors.length) {
+    return res.status(400).json({ errors: errors });
+  }
 
   const restaurant = await prisma.restaurant.findUnique({
     where: {

@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { axiosRestaurant } from "../utils/axiosConfig";
-import { Time } from "../utils/convertToDisplayTime";
 
 export default function useReservation() {
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState<string | null>(null);
 
   const createReservation = async ({
     slug,
@@ -54,7 +53,7 @@ export default function useReservation() {
       return;
     } catch (error: any) {
       setLoading(false);
-      setError(error.response.data.errors.join(","));
+      setError(error.response.data.errors.join(", "));
     }
   };
 
